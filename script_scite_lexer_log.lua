@@ -1,7 +1,8 @@
 -- -*- coding: utf-8 -*-
 --[[
 
-first release:   14th may  2015
+11/15 some stuff with '
+05/15 first release
 
 "script_scite_lexer_log.lua"
 A SciTE script lexer for the *.log
@@ -58,7 +59,6 @@ style.script_scite_lexer_log.16=fore:#00CCCC
 
 TODO :
     - URI and URL
-    - good stuff for '. Prob with just a open one '.
 
 ]]
 
@@ -99,7 +99,7 @@ function OnStyle(styler)
                                 styler:SetState(S_DEFAULT)
                         end
                 elseif styler:State() == S_LITERAL then
-                        if styler:Match("'") or styler:Match('"') then
+                        if styler:Match("' ") or styler:Match('"') or styler:AtLineEnd() then
                                 styler:ForwardSetState(S_DEFAULT)
                         end
                 elseif styler:State() == S_BACKTICKS then
@@ -111,7 +111,7 @@ function OnStyle(styler)
 
                 -- Enter state if needed
                 if styler:State() == S_DEFAULT then
-                        if styler:Match("'") or styler:Match('"') then
+                        if styler:Match(" '") or styler:Match('"') then
                                 styler:SetState(S_LITERAL)
                         elseif styler:Match("`") then
                                 styler:SetState(S_BACKTICKS)
