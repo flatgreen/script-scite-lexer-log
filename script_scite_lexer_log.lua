@@ -18,6 +18,7 @@ Some good references that'll help when scripting SciTE with Lua:
 some good inspirations for lua lexers:
     https://github.com/tobyink/misc-scite-config/blob/master/.SciTE/n3.lexer.lua
     https://github.com/nkmathew/scite-hla-lexer/blob/master/script_hla.lua
+    (?)https://searchcode.com/codesearch/view/7983115/
 
     
 Installation on a Windows machine:
@@ -80,7 +81,7 @@ function OnStyle(styler)
         identifierCharacters = ":0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ%(%)./%%"
         -- Warn with '-_[]{}'
         -- identifierNumeric = "0123456789:"
-        logWords = ' VERBOSE INFO DEBUG WARNING ERROR CRITICAL TRACE '
+        logWords = ' VERBOSE INFO DEBUG WARNING ERROR CRITICAL TRACE verbose info debug warning error critical trace '
         
         styler:StartStyling(styler.startPos, styler.lengthDoc, styler.initStyle)
         while styler:More() do
@@ -106,7 +107,6 @@ function OnStyle(styler)
                         if styler:Match("`") then
                             styler:ForwardSetState(S_DEFAULT)
                         end
-                
                 end
 
                 -- Enter state if needed
